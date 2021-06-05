@@ -18,6 +18,14 @@
     },
     {
       "method": "GET",
+      "path": "/posts/report",
+      "handler": "post.report",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/posts/:id",
       "handler": "post.findOne",
       "config": {
