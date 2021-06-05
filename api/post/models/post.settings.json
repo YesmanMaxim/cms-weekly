@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "name": "Post",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "issue_no": {
+      "type": "integer",
+      "required": true,
+      "default": 999
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "short_url": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "tags": {
+      "collection": "tag",
+      "via": "posts",
+      "dominant": true
+    }
+  }
+}
