@@ -3,6 +3,9 @@
 module.exports = {
   async report(ctx) {
     return stringify(await find(ctx), ctx.request.query.issue_no);
+  },
+  async issues(ctx) {
+    return aggregateIssues(await find(ctx));
   }
 };
 
@@ -14,6 +17,12 @@ async function find(ctx) {
     entities = await strapi.services.post.find(ctx.query);
   }
   return entities;
+}
+
+const MAXIMUM_ISSUES = 900
+
+function aggregateIssues(entities) {
+  return [...new Set(entities.map(entity => entity.issue_no).filter(issue => issue < MAXIMUM_ISSUES))]
 }
 
 function stringify(entities, issue) {

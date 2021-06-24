@@ -26,6 +26,14 @@
     },
     {
       "method": "GET",
+      "path": "/posts/issues",
+      "handler": "post.issues",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/posts/:id",
       "handler": "post.findOne",
       "config": {
