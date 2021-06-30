@@ -1,13 +1,25 @@
 'use strict';
 
+const shortUrlService = require('../../../extensions/short-url-service');
+
 module.exports = {
   async report(ctx) {
     return stringify(await find(ctx), ctx.request.query.issue_no);
   },
   async issues(ctx) {
     return aggregateIssues(await find(ctx));
+  },
+  async customCreate(ctx) {
+    preProcessBody(ctx.request.body);
+    return strapi.controllers.post.create(ctx);
   }
 };
+
+function preProcessBody(body) {
+  body.issue_no = 1000
+  body.published_at = null
+  body.short_url = shortUrlService.shortUrl(body.url)
+}
 
 async function find(ctx) {
   let entities;

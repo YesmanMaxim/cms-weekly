@@ -43,7 +43,7 @@
     {
       "method": "POST",
       "path": "/posts",
-      "handler": "post.create",
+      "handler": "post.customCreate",
       "config": {
         "policies": []
       }
