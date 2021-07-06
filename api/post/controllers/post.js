@@ -44,7 +44,7 @@ function aggregateIssues(entities) {
 
 function stringify(entities, issue) {
   return [
-    `# **Tech Weekly. Issue #${issue}**`,
+    `# **Tech Weekly. [Issue #${issue}](${strapi.config.get('server.frontend.url')}/?issue_no=${issue})**`,
     '\n\n',
     entities.map(entity => stringifyEntity(entity)).join(''),
   ].join('')
@@ -54,5 +54,9 @@ function stringifyEntity(entity) {
   return `
 ### [${entity.title}](${entity.short_url})
 > _${entity.description.trim()}_
+> Tags: ${entity.tags.map(tag => stringifyTag(tag)).join(', ')}
 `;
+}
+function stringifyTag(tag) {
+  return `[${tag.title}](${strapi.config.get('server.frontend.url')}/tag/${tag.id})`;
 }

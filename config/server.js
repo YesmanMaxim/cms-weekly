@@ -1,4 +1,4 @@
-module.exports = ({ env }) => ({
+module.exports = ({env}) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1337),
   admin: {
@@ -9,5 +9,8 @@ module.exports = ({ env }) => ({
   bitly: {
     token: env('BITLY_AUTH_TOKEN'),
     url: 'https://api-ssl.bitly.com/v4/shorten',
+  },
+  frontend: {
+    url: env('FRONTEND_URL', 'http://localhost:3000'),
   },
 });
