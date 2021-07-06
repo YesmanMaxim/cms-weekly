@@ -11,7 +11,7 @@ module.exports = {
   },
   async customCreate(ctx) {
     try {
-      preProcessBody(ctx.request.body);
+      await preProcessBody(ctx.request.body);
       return await strapi.controllers.post.create(ctx);
     } catch (error) {
       console.log(error)
@@ -20,10 +20,10 @@ module.exports = {
   }
 };
 
-function preProcessBody(body) {
+async function preProcessBody(body) {
   body.issue_no = 1000
   body.published_at = null
-  body.short_url = shortUrlService.shortUrl(body.url)
+  body.short_url = await shortUrlService.shortUrl(body.url)
 }
 
 async function find(ctx) {
