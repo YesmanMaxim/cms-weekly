@@ -10,8 +10,13 @@ module.exports = {
     return aggregateIssues(await find(ctx));
   },
   async customCreate(ctx) {
-    preProcessBody(ctx.request.body);
-    return strapi.controllers.post.create(ctx);
+    try {
+      preProcessBody(ctx.request.body);
+      return await strapi.controllers.post.create(ctx);
+    } catch (error) {
+      console.log(error)
+      throw error.message ? strapi.errors.badRequest(error.message) : error
+    }
   }
 };
 
