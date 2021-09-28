@@ -44,7 +44,7 @@ function aggregateIssues(entities) {
 
 function stringify(entities, issue) {
   return [
-    `# **Tech Weekly. [Issue #${issue}](${strapi.config.get('server.frontend.url')}/?issue_no=${issue})**`,
+    `# **Tech Weekly. [Issue #${issue}](${strapi.config.get('server.frontend.url')}/issue/${issue})**`,
     '\n\n',
     entities.map(entity => stringifyEntity(entity)).join(''),
   ].join('')
