@@ -7,7 +7,8 @@ module.exports = {
     return stringify(await find(ctx), ctx.request.query.issue_no);
   },
   async issues(ctx) {
-    return aggregateIssues(await find({_limit: -1}));
+    ctx.query._limit = -1;
+    return aggregateIssues(await find(ctx));
   },
   async customCreate(ctx) {
     try {
